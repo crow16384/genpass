@@ -16,10 +16,7 @@ int main(int argc, char *argv[])
                                  "'*' - required parameter(s)!\n\n"
                                  "Invocation : <program> --number <number> <format>\nAgruments:");
 
-    desc.add_options()
-        ("help", "  Produce help message")
-        ("number", po::value<uint>()->default_value(3), "  Number of passwords")
-        ("format", po::value<std::string>()->required(), "* Password format");
+    desc.add_options()("help", "  Produce help message")("number", po::value<unsigned int>()->default_value(3), "  Number of passwords")("format", po::value<std::string>()->required(), "* Password format");
 
     // Positional arguments don't need a parameter flag
     po::positional_options_description pos_desc;
@@ -30,9 +27,10 @@ int main(int argc, char *argv[])
     try
     {
         po::store(po::command_line_parser(argc, argv)
-                    .options(desc)
-                    .positional(pos_desc)
-                    .run(), vm);
+                      .options(desc)
+                      .positional(pos_desc)
+                      .run(),
+                  vm);
         po::notify(vm);
     }
     catch (po::error &e)
@@ -42,14 +40,15 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    uint number(vm["number"].as<uint>());
+    unsigned int number(vm["number"].as<unsigned int>());
     std::string format(vm["format"].as<std::string>());
 
     Generator g;
     Password pwd;
     pwd.parts = Parser::parse(format);
 
-    for (uint i = 0; i < number; i++) {
+    for (unsigned int i = 0; i < number; i++)
+    {
         std::cout << g.generate(pwd.parts) << std::endl;
     }
 

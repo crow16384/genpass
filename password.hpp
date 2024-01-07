@@ -8,14 +8,6 @@ using std::pair;
 using std::string;
 using std::vector;
 
-#ifdef _MSC_VER
-typedef unsigned int uint;
-#endif
-
-#ifdef __APPLE__
-typedef unsigned int uint;
-#endif
-
 class Password
 {
 public:
@@ -29,7 +21,7 @@ public:
         Special // Special characters 's'
     };
 
-    typedef pair<PTP, uint> PwdTmpl;
+    typedef pair<PTP, unsigned int> PwdTmpl;
     typedef vector<PwdTmpl> Tmpl;
 
     Tmpl parts;
