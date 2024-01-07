@@ -4,18 +4,24 @@
 #include <vector>
 #include <string>
 
-using std::vector;
-using std::string;
 using std::pair;
+using std::string;
+using std::vector;
 
 #ifdef _MSC_VER
 typedef unsigned int uint;
 #endif
 
-class Password {
+#ifdef __APPLE__
+typedef unsigned int uint;
+#endif
+
+class Password
+{
 public:
     // Password Template Part
-    enum PTP {
+    enum PTP
+    {
         Error,
         UWord,  // Uppercase word     'W'
         Word,   // Lowcase word       'w'
@@ -30,4 +36,3 @@ public:
 };
 
 #endif
-
