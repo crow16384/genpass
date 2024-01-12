@@ -4,17 +4,27 @@ project(genpass
         LANGUAGES CXX
         VERSION 0.1.0
         DESCRIPTION "Password generator")
+        
+set(PROJECT_AUTHOR crow16384)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(LIB_NAME GenPassLib)
 set(TARGET_NAME genpass)
-set(Boost_USE_STATIC_LIBS        ON)  # only find static libs
+
+add_subdirectory(configured)
+add_subdirectory(src)
+add_subdirectory(app)
+
+include_directories(${LIB_HEADERS})
+
+set(Boost_USE_STATIC_LIBS ON)  # only find static libs
 
 # Boost
 find_package(Boost COMPONENTS program_options REQUIRED)
 if(Boost_FOUND)
-        include_directories(${Boost_INCLUDE_DIRS})
-        add_executable(${TARGET_NAME} main.cpp parser.cpp generator.cpp)
-        target_link_libraries(${TARGET_NAME} ${Boost_LIBRARIES})
+  include_directories(${Boost_INCLUDE_DIRS})
+  target_link_libraries(${TARGET_NAME} PUBLIC ${LIB_NAME} ${Boost_LIBRARIES})
 endif()
-
-set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
