@@ -33,7 +33,7 @@ private:
 public:
     Generator() { srand(time(0)); } // Initialize RND generator
 
-    string generate(Password::Tmpl &);
+    string generate(Tmpl &);
 };
 
 #endif

@@ -8,22 +8,20 @@ using std::pair;
 using std::string;
 using std::vector;
 
-class Password
+enum class PTP
 {
-public:
-    // Password Template Part
-    enum PTP
-    {
-        Error,
-        UWord,  // Uppercase word     'W'
-        Word,   // Lowcase word       'w'
-        Digits, // Digits             'd'
-        Special // Special characters 's'
-    };
+    Error,
+    UWord,  // Uppercase word     'W'
+    Word,   // Lowcase word       'w'
+    Digits, // Digits             'd'
+    Special // Special characters 's'
+};
 
-    typedef pair<PTP, unsigned int> PwdTmpl;
-    typedef vector<PwdTmpl> Tmpl;
+typedef pair<PTP, unsigned int> PwdTmpl;
+typedef vector<PwdTmpl> Tmpl;
 
+struct PasswordTemplate
+{
     Tmpl parts;
 };
 

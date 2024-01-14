@@ -4,31 +4,13 @@
     // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
-            "name": "(gdb) Debug",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
+            "name": "Debug",
             "program": "${workspaceFolder}/build/app/genpass",
-            "args": ["W4d4w3"],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Включить автоматическое форматирование для gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Задать для варианта приложения дизассемблирования значение Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ]
+            "args": ["W5d3-7"],
+            "cwd": "${workspaceFolder}"
         }
-
     ]
 }

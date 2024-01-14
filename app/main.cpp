@@ -85,17 +85,16 @@ int main(int argc, char *argv[])
     }
 
     unsigned int number(vm["number"].as<unsigned int>());
-    //std::string format(vm["format"].as<std::string>());
 
     Generator g;
-    Password pwd;
+    PasswordTemplate pwd;
     pwd.parts = Parser::parse(password_format);
 
     for (auto i = 0; i < number; i++)
     {
         std::cout << g.generate(pwd.parts) << "\n";
     }
-    std::cout << std::endl;
+    std::cout << std::endl; // Flush
 
     return 0;
 }

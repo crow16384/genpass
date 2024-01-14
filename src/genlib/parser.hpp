@@ -4,8 +4,7 @@
 #include "password.hpp"
 
 struct Parser {
-public:
-    static Password::Tmpl parse(const string& s);
+    static Tmpl parse(const string& s);
 };
 
 #endif

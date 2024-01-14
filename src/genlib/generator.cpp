@@ -49,21 +49,21 @@ string Generator::make_special(const unsigned int len) {
     return res;
 }
 
-string Generator::generate(Password::Tmpl& v) {
+string Generator::generate(Tmpl& v) {
     string password;
 
     for (auto elem : v) {
         switch (elem.first) {
-            case Password::Word:
+            case PTP::Word:
                 password += make_word(elem.second);
                 break;
-            case Password::UWord:
+            case PTP::UWord:
                 password += make_uword(elem.second);
                 break;
-            case Password::Digits:
+            case PTP::Digits:
                 password += make_digits(elem.second);
                 break;
-            case Password::Special:
+            case PTP::Special:
                 password += make_special(elem.second);
                 break;
             default:
