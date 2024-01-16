@@ -8,21 +8,21 @@ using std::pair;
 using std::string;
 using std::vector;
 
-enum class PTP
+enum class PasswordPartType
 {
     Error,
     UWord,  // Uppercase word     'W'
-    Word,   // Lowcase word       'w'
+    Word,   // Lowercase word     'w'
     Digits, // Digits             'd'
     Special // Special characters 's'
 };
 
-typedef pair<PTP, unsigned int> PwdTmpl;
-typedef vector<PwdTmpl> Tmpl;
+typedef pair<PasswordPartType, unsigned int> PasswordPart;
+typedef vector<PasswordPart> Template;
 
 struct PasswordTemplate
 {
-    Tmpl parts;
+    Template parts;
 };
 
 #endif

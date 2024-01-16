@@ -1,9 +1,9 @@
 #include "parser.hpp"
 
-Tmpl Parser::parse(const string& s) {
-    Tmpl result;
+Template Parser::parse(const string& s) {
+    Template result;
 
-    PwdTmpl t = std::make_pair(PTP::Error, 0);
+    PasswordPart t = std::make_pair(PasswordPartType::Error, 0);
     bool first = true;
 
     for (char c : s) {
@@ -15,23 +15,23 @@ Tmpl Parser::parse(const string& s) {
                 result.push_back(t);
             }
 
-            t = {PTP::Error, 0};
+            t = {PasswordPartType::Error, 0};
             switch (c)
             {
                 case 'W':
-                    t.first = PTP::UWord;
+                    t.first = PasswordPartType::UWord;
                     break;
                 case 'w':
-                    t.first = PTP::Word;
+                    t.first = PasswordPartType::Word;
                     break;
                 case 'd':
-                    t.first = PTP::Digits;
+                    t.first = PasswordPartType::Digits;
                     break;
                 case 's':
-                    t.first = PTP::Special;
+                    t.first = PasswordPartType::Special;
                     break;
                 default:
-                    t.first = PTP::Error;
+                    t.first = PasswordPartType::Error;
                     break;
                 }
         }

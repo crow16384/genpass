@@ -7,6 +7,7 @@ set(LIB_HEADERS
     "password.hpp"
     "parser.hpp"
     "generator.hpp"
+    "randomer.hpp"
 )
 
 add_library(${LIB_NAME} STATIC

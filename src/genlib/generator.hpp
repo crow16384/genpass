@@ -2,10 +2,9 @@
 #define GENERATOR_H
 
 #include <string>
-#include <string.h>
-#include <time.h>
+#include <cstring>
 #include <cstdlib>
-
+#include "randomer.hpp"
 #include "password.hpp"
 
 using std::string;
@@ -23,17 +22,15 @@ private:
     const size_t special_len = strlen(special);
     const size_t digits_len = strlen(digits);
 
-    unsigned int rnd_range(size_t); // Generate random number in range from 0 to given len
+    static size_t rnd_range(size_t); // Generate random number in range from 0 to given len
 
-    string make_word(const unsigned int len);
-    string make_uword(const unsigned int len);
-    string make_digits(const unsigned int len);
-    string make_special(const unsigned int len);
+    string make_word(unsigned int);
+    string make_Uword(unsigned int);
+    string make_digits(unsigned int);
+    string make_special(unsigned int);
 
 public:
-    Generator() { srand(time(0)); } // Initialize RND generator
-
-    string generate(Tmpl &);
+    string generate(Template &);
 };
 
 #endif
