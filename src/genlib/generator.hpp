@@ -1,5 +1,4 @@
-#ifndef GENERATOR_H
-#define GENERATOR_H
+#pragma once
 
 #include <string>
 #include <cstring>
@@ -16,10 +15,11 @@ private:
     const char *special = "!@#$%^&*~><(),\\=/;:+-.[]_";
     const char *digits = "0123456789";
 
-    const size_t vowels_len = strlen(vowels);
-    const size_t consonants_len = strlen(consonants);
-    const size_t special_len = strlen(special);
-    const size_t digits_len = strlen(digits);
+    // Random number generators
+    Rand consonants_r{strlen(consonants)};
+    Rand vowels_r{strlen(vowels)};
+    Rand digits_r{strlen(digits)};
+    Rand special_r{strlen(special)};
 
     string make_part(PasswordPart);
 
@@ -31,5 +31,3 @@ private:
 public:
     string generate(Template &);
 };
-
-#endif

@@ -26,8 +26,6 @@ string PasswordGenerator::make_part(PasswordPart part) {
 
 string PasswordGenerator::make_word(const size_t len) {
     std::string res;
-    Rand consonants_r{consonants_len};
-    Rand vowels_r{vowels_len};
 
     for (unsigned int i = 0; i < len; i++) {
         if (i % 2 == 0) res += consonants[consonants_r()];
@@ -47,7 +45,6 @@ string PasswordGenerator::make_upcased_word(const size_t len) {
 
 string PasswordGenerator::make_digits(const size_t len) {
     std::string res;
-    Rand digits_r{digits_len};
 
     for (unsigned int i = 0; i < len; i++) {
         res += digits[digits_r()];
@@ -58,7 +55,6 @@ string PasswordGenerator::make_digits(const size_t len) {
 
 string PasswordGenerator::make_special(const size_t len) {
     std::string res;
-    Rand special_r{special_len};
 
     for (unsigned int i = 0; i < len; i++) {
         res += special[special_r()];

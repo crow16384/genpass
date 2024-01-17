@@ -1,10 +1,8 @@
-#ifndef RANDOMER_H
-#define RANDOMER_H
+#pragma once
 
 #include <random>
 
 class Rand {
-    // random seed by default
     std::mt19937 gen_;
     std::uniform_int_distribution<size_t> dist_;
 public:
@@ -15,5 +13,3 @@ public:
         return dist_(gen_);
     }
 };
-
-#endif //RANDOMER_H

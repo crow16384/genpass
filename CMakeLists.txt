@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.25)
 
 project(genpass
         LANGUAGES CXX
-        VERSION 0.2.1
+        VERSION 0.2.2
         DESCRIPTION "Password generator")
         
 set(PROJECT_AUTHOR crow16384)

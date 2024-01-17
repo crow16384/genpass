@@ -1,5 +1,4 @@
-#ifndef PARSER_H
-#define PARSER_H
+#pragma once
 
 #include "password.hpp"
 
@@ -7,4 +6,3 @@ struct Parser {
     static Template parse(const string& s);
 };
 
-#endif

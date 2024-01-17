@@ -1,5 +1,4 @@
-#ifndef PASSWORD_H
-#define PASSWORD_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -24,5 +23,3 @@ struct PasswordTemplate
 {
     Template parts;
 };
-
-#endif
