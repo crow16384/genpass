@@ -2,14 +2,12 @@
 #define GENERATOR_H
 
 #include <string>
-#include <cstring>
-#include <cstdlib>
 #include "randomer.hpp"
 #include "password.hpp"
 
 using std::string;
 
-class Generator
+class PasswordGenerator
 {
 private:
     const char *vowels = "aeiouy";
@@ -22,12 +20,12 @@ private:
     const size_t special_len = strlen(special);
     const size_t digits_len = strlen(digits);
 
-    static size_t rnd_range(size_t); // Generate random number in range from 0 to given len
+    string make_part(PasswordPart);
 
-    string make_word(unsigned int);
-    string make_Uword(unsigned int);
-    string make_digits(unsigned int);
-    string make_special(unsigned int);
+    string make_word(size_t);
+    string make_upcased_word(size_t);
+    string make_digits(size_t);
+    string make_special(size_t);
 
 public:
     string generate(Template &);

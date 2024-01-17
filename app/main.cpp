@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 
     unsigned int number(vm["number"].as<unsigned int>());
 
-    Generator g;
+    PasswordGenerator g;
     PasswordTemplate pwd;
     pwd.parts = Parser::parse(password_format);
 
