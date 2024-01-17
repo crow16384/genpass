@@ -2,6 +2,7 @@
 #define GENERATOR_H
 
 #include <string>
+#include <cstring>
 #include "randomer.hpp"
 #include "password.hpp"
 
