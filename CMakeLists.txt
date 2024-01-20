@@ -14,6 +14,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(LIB_NAME GenPassLib)
 set(TARGET_NAME genpass)
 
+set(CMAKE_INSTALL_PREFIX "~/bin")
+#install(CODE "execute_process(\"strip ${TARGET_NAME}\")")
+
 add_subdirectory(configured)
 add_subdirectory(src)
 add_subdirectory(app)

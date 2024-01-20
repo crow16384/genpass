@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/build/app/genpass",
-            "args": ["W5d3-7"],
+            "args": ["W5d7"],
             "cwd": "${workspaceFolder}"
         }
     ]
