@@ -29,5 +29,5 @@ private:
     string make_special(size_t);
 
 public:
-    string generate(Template &);
+    string generate(PasswordTemplate &);
 };

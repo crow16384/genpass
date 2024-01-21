@@ -65,10 +65,10 @@ string PasswordGenerator::make_special(const size_t len) {
     return res;
 }
 
-string PasswordGenerator::generate(Template& v) {
+string PasswordGenerator::generate(PasswordTemplate& v) {
     string password;
 
-    for (auto elem: v) {
+    for (auto elem : v.parts) {
         password.append(make_part(elem));
     }
 

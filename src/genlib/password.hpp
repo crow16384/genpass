@@ -17,9 +17,9 @@ enum class PasswordPartType
 };
 
 typedef pair<PasswordPartType, unsigned int> PasswordPart;
-typedef vector<PasswordPart> Template;
 
 struct PasswordTemplate
 {
-    Template parts;
+    vector<PasswordPart> parts;
+    //PasswordTemplate() : parts{std::make_pair(PasswordPartType::Error, 0)} {};
 };

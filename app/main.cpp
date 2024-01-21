@@ -87,12 +87,11 @@ int main(int argc, char *argv[])
     unsigned int number(vm["number"].as<unsigned int>());
 
     PasswordGenerator g;
-    PasswordTemplate pwd;
-    pwd.parts = Parser::parse(password_format);
+    auto pwd = Parser::parse(password_format);
 
     for (auto i = 0; i < number; i++)
     {
-        std::cout << g.generate(pwd.parts) << "\n";
+        std::cout << g.generate(pwd) << "\n";
     }
     std::cout << std::endl; // Flush
 
