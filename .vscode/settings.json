@@ -79,5 +79,6 @@
         "format": "cpp",
         "stop_token": "cpp",
         "cinttypes": "cpp"
-    }
+    },
+    "editor.tabSize": 2
 }
