@@ -1,9 +1,11 @@
 #pragma once
 
-#include <string>
-#include <cstring>
 #include "randomer.hpp"
 #include "password.hpp"
+
+#include <string>
+#include <cstring>
+#include <map>
 
 using std::string;
 
@@ -28,6 +30,13 @@ private:
     string make_digits(size_t);
     string make_special(size_t);
 
+    static inline std::map<PasswordPartType, string (PasswordGenerator::*)(size_t)> funs {
+        {PasswordPartType::UWord, &PasswordGenerator::make_upcased_word},
+        {PasswordPartType::Word, &PasswordGenerator::make_word},
+        {PasswordPartType::Digits, &PasswordGenerator::make_digits}, 
+        {PasswordPartType::Special, &PasswordGenerator::make_special} 
+    };
 public:
     string generate(PasswordTemplate &);
+
 };

@@ -10,8 +10,12 @@ PasswordTemplate Parser::parse(const string& s) {
     while(ss >> c >> n) {
         try{
             password_part.first = pt.at(c);
+            if (n > 255) throw(std::out_of_range("invalid n value"));
             password_part.second = n;
-        } catch (std::out_of_range&) {}
+        } catch (const std::out_of_range&) {
+            password_part.first = PasswordPartType::Error,
+            password_part.second = 1;
+        }
         result.parts.push_back(password_part);
     }
 

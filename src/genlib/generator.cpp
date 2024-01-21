@@ -6,23 +6,13 @@ string PasswordGenerator::make_part(PasswordPart part) {
     string res;
     auto [password_type, len] = part;
 
-    switch (password_type) {
-        case PasswordPartType::Word:
-            res.append(make_word(len));
-            break;
-        case PasswordPartType::UWord:
-            res.append(make_upcased_word(len));
-            break;
-        case PasswordPartType::Digits:
-            res.append(make_digits(len));
-            break;
-        case PasswordPartType::Special:
-            res.append(make_special(len));
-            break;
-        default:
-            res.append(string(len, '*'));
-            break;
+    try {
+        auto fn = funs.at(password_type);
+        res.append((*this.*fn)(len));
+    } catch (...) {
+       res.append(string(len, '*')); 
     }
+    
     return res;
 }
 
