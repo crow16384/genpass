@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     PasswordGenerator g;
     auto pwd = Parser::parse(password_format);
 
-    for (auto i = 0; i < number; i++)
+    for (auto i = 0; i < number; ++i)
     {
         std::cout << g.generate(pwd) << "\n";
     }
