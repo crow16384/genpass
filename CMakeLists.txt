@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.25)
+cmake_minimum_required (VERSION 3.30)
 
 project(genpass
         LANGUAGES CXX
@@ -26,7 +26,7 @@ include_directories(${LIB_HEADERS})
 set(Boost_USE_STATIC_LIBS ON)  # only find static libs
 
 # Boost
-find_package(Boost COMPONENTS program_options REQUIRED)
+find_package(Boost COMPONENTS program_options REQUIRED QUIET)
 if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
   target_link_libraries(${TARGET_NAME} PUBLIC ${LIB_NAME} ${Boost_LIBRARIES})
