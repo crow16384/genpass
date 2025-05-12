@@ -11,7 +11,7 @@ PasswordTemplate Parser::parse(const string& s) {
     try {
       password_part.first = pt.at(c);
       if (n > 255)
-        throw(std::out_of_range("invalid n value"));
+        throw(std::out_of_range("invalid n value for 'Wwsd' parameter(s)"));
       password_part.second = n;
     } catch (const std::out_of_range&) {
       password_part.first = PasswordPartType::Error, password_part.second = 1;
