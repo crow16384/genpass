@@ -1,17 +1,13 @@
 #pragma once
 
+#include <cstddef>
 #include <random>
 
-using namespace std;
-
 class Rand {
-    mt19937 gen_;
-    uniform_int_distribution<size_t> dist_;
-public:
-    explicit Rand(const size_t max) :
-            gen_(random_device{}()), dist_(0, max-1) {}
+    std::mt19937 gen_;
+    std::uniform_int_distribution<std::size_t> dist_;
 
-    size_t  operator()() {
-        return dist_(gen_);
-    }
+public:
+    explicit Rand(std::size_t max);
+    std::size_t operator()();
 };

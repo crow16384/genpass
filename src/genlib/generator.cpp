@@ -1,68 +1,51 @@
 #include "generator.hpp"
+#include <cctype>
 
-using std::string;
-
-string PasswordGenerator::make_part(PasswordPart part) {
-  string res;
-  auto [password_type, len] = part;
-
-  try {
-    auto fn = funs.at(password_type);
-    res.append((*this.*fn)(len));
-  } catch (...) {
-    res.append(string(len, '*'));
-  }
-
-  return res;
+std::string PasswordGenerator::make_part(const PasswordPart& part) {
+    const auto [password_type, len] = part;
+    try {
+        const auto fn = funs.at(password_type);
+        return (this->*fn)(len);
+    } catch (...) {
+        return std::string(len, '*');
+    }
 }
 
-string PasswordGenerator::make_word(const size_t len) {
-  string res;
-
-  for (unsigned int i = 0; i < len; i++) {
-    if (i % 2 == 0)
-      res.push_back(consonants[consonants_r()]);
-    else
-      res += vowels[vowels_r()];
-  }
-  return res;
+std::string PasswordGenerator::make_word(std::size_t len) {
+    std::string res;
+    res.reserve(len);
+    for (std::size_t i = 0; i < len; ++i) {
+        res += (i % 2 == 0) ? consonants[consonants_r()] : vowels[vowels_r()];
+    }
+    return res;
 }
 
-string PasswordGenerator::make_upcased_word(const size_t len) {
-  auto res = PasswordGenerator::make_word(len);
-
-  if (!res.empty())
-    res[0] = static_cast<char>(toupper(res[0]));
-
-  return res;
+std::string PasswordGenerator::make_upcased_word(std::size_t len) {
+    auto res = make_word(len);
+    if (!res.empty())
+        res[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(res[0])));
+    return res;
 }
 
-string PasswordGenerator::make_digits(const size_t len) {
-  string res;
-
-  for (unsigned int i = 0; i < len; i++) {
-    res.push_back(digits[digits_r()]);
-  }
-
-  return res;
+std::string PasswordGenerator::make_digits(std::size_t len) {
+    std::string res;
+    res.reserve(len);
+    for (std::size_t i = 0; i < len; ++i)
+        res += digits[digits_r()];
+    return res;
 }
 
-string PasswordGenerator::make_special(const size_t len) {
-  string res;
-
-  for (unsigned int i = 0; i < len; i++) {
-    res.push_back(special[special_r()]);
-  }
-
-  return res;
+std::string PasswordGenerator::make_special(std::size_t len) {
+    std::string res;
+    res.reserve(len);
+    for (std::size_t i = 0; i < len; ++i)
+        res += special[special_r()];
+    return res;
 }
 
-string PasswordGenerator::generate(PasswordTemplate& v) {
-  string password;
-
-  for (auto elem : v) {
-    password.append(make_part(elem));
-  }
-
-  return password;
+std::string PasswordGenerator::generate(const PasswordTemplate& tpl) {
+    std::string password;
+    for (const auto& part : tpl)
+        password += make_part(part);
+    return password;
 }

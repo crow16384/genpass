@@ -1,5 +1,6 @@
-set(LIB_SOURCES 
+set(LIB_SOURCES
     "parser.cpp"
+    "randomer.cpp"
     "generator.cpp"
 )
 

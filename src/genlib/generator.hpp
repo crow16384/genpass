@@ -1,42 +1,36 @@
 #pragma once
 
-#include "randomer.hpp"
 #include "password.hpp"
+#include "randomer.hpp"
 
-#include <string>
-#include <cstring>
+#include <cstddef>
 #include <map>
+#include <string>
 
-using std::string;
+class PasswordGenerator {
+    static constexpr const char vowels[] = "aeiouy";
+    static constexpr const char consonants[] = "bcdfghjklmnpqrsvwxz";
+    static constexpr const char special[] = "!@#$%^&*~><(),\\=/;:+-.[]_";
+    static constexpr const char digits[] = "0123456789";
 
-class PasswordGenerator
-{
-private:
-    const char *vowels = "aeiouy";
-    const char *consonants = "bcdfghjklmnpqrsvwxz";
-    const char *special = "!@#$%^&*~><(),\\=/;:+-.[]_";
-    const char *digits = "0123456789";
+    Rand consonants_r{sizeof(consonants) - 1};
+    Rand vowels_r{sizeof(vowels) - 1};
+    Rand digits_r{sizeof(digits) - 1};
+    Rand special_r{sizeof(special) - 1};
 
-    // Random number generators
-    Rand consonants_r{strlen(consonants)};
-    Rand vowels_r{strlen(vowels)};
-    Rand digits_r{strlen(digits)};
-    Rand special_r{strlen(special)};
+    std::string make_part(const PasswordPart& part);
+    std::string make_word(std::size_t len);
+    std::string make_upcased_word(std::size_t len);
+    std::string make_digits(std::size_t len);
+    std::string make_special(std::size_t len);
 
-    string make_part(PasswordPart);
-
-    string make_word(size_t);
-    string make_upcased_word(size_t);
-    string make_digits(size_t);
-    string make_special(size_t);
-
-    static inline std::map<PasswordPartType, string (PasswordGenerator::*)(size_t)> funs {
+    static inline const std::map<PasswordPartType, std::string (PasswordGenerator::*)(std::size_t)> funs{
         {PasswordPartType::UWord, &PasswordGenerator::make_upcased_word},
         {PasswordPartType::Word, &PasswordGenerator::make_word},
-        {PasswordPartType::Digits, &PasswordGenerator::make_digits}, 
-        {PasswordPartType::Special, &PasswordGenerator::make_special} 
+        {PasswordPartType::Digits, &PasswordGenerator::make_digits},
+        {PasswordPartType::Special, &PasswordGenerator::make_special},
     };
-public:
-    string generate(PasswordTemplate &);
 
+public:
+    std::string generate(const PasswordTemplate& tpl);
 };

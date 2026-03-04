@@ -1,11 +1,8 @@
 #pragma once
 
+#include <cstddef>
 #include <string>
 #include <vector>
-
-using std::pair;
-using std::string;
-using std::vector;
 
 enum class PasswordPartType {
   Error,
@@ -15,5 +12,5 @@ enum class PasswordPartType {
   Special  // Special characters 's'
 };
 
-typedef pair<PasswordPartType, unsigned int> PasswordPart;
-typedef vector<PasswordPart> PasswordTemplate;
+using PasswordPart = std::pair<PasswordPartType, unsigned int>;
+using PasswordTemplate = std::vector<PasswordPart>;
