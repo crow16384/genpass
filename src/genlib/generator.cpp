@@ -27,6 +27,37 @@ std::string PasswordGenerator::make_upcased_word(std::size_t len) {
     return res;
 }
 
+std::string PasswordGenerator::make_pronounceable_word(std::size_t len) {
+    std::string res;
+    res.reserve(len + 2);
+    bool consonant_next = true;
+    while (res.size() < len) {
+        if (consonant_next) {
+            const std::size_t idx = cons_unit_r();
+            if (idx < n_consonant_digraphs)
+                res += consonant_digraphs[idx];
+            else
+                res += consonants[idx - n_consonant_digraphs];
+        } else {
+            const std::size_t idx = vowel_unit_r();
+            if (idx < n_vowel_digraphs)
+                res += vowel_digraphs[idx];
+            else
+                res += vowels[idx - n_vowel_digraphs];
+        }
+        consonant_next = !consonant_next;
+    }
+    res.resize(len);
+    return res;
+}
+
+std::string PasswordGenerator::make_pronounceable_upcased(std::size_t len) {
+    auto res = make_pronounceable_word(len);
+    if (!res.empty())
+        res[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(res[0])));
+    return res;
+}
+
 std::string PasswordGenerator::make_digits(std::size_t len) {
     std::string res;
     res.reserve(len);

@@ -2,7 +2,6 @@
 
 #include "password.hpp"
 #include <map>
-#include <sstream>
 #include <string>
 
 struct Parser {

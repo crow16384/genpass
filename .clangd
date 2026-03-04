@@ -1,0 +1,9 @@
+# clangd config for genpass (CMake + C++20)
+# Run `cmake .` or `cmake -B build` so compile_commands.json exists.
+# clangd finds it in the project root (in-tree) or in build/ (out-of-tree: use CompilationDatabase below).
+
+CompileFlags:
+  Add:
+    - -std=c++20
+  # If you use out-of-tree build (cmake -B build), uncomment so clangd finds compile_commands.json:
+  # CompilationDatabase: build

@@ -49,8 +49,10 @@ static void print_help() {
                  "  -l [ --last ]    use last remembered format (serena memory)\n\n"
                  "format (optional if --last is used):\n"
                  "  W - uppercase word   w - lowercase word\n"
-                 "  d - digit            s - special symbol\n\n"
-                 "Example: genpass W4s2w3d5  → 3 passwords like 'Cyvi!:wof90943'\n"
+                 "  P - pronounceable up  p - pronounceable (th, sh, ch, qu, etc.)\n"
+                 "  d - digit             s - special symbol\n\n"
+                 "Example: genpass W4s2w3d5  → 'Cyvi!:wof90943'\n"
+                 "         genpass p6d2      → pronounceable like 'theeng42'\n"
                  "The last used format is remembered for --last.\n";
 }
 

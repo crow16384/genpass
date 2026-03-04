@@ -1,5 +1,8 @@
 cmake_minimum_required (VERSION 3.25)
 
+# For clangd: always have compile_commands.json at project root
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 project(genpass
         LANGUAGES CXX
         VERSION 0.3.0
