@@ -1,7 +1,87 @@
-build/*
-x64/*
-.vs/*
-.DS_*
-cmake-build-*
+# ---- Build directories ----
+build/
+cmake-build-*/
+x64/
+out/
+
+# ---- CMake (in-tree when not using build/) ----
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+app/Makefile
+app/cmake_install.cmake
+src/Makefile
+src/cmake_install.cmake
+src/genlib/Makefile
+src/genlib/cmake_install.cmake
+configured/Makefile
+configured/cmake_install.cmake
+configured/CMakeFiles/
+CPackConfig.cmake
+CPackSourceConfig.cmake
+install_manifest.txt
+compile_commands.json
+
+# Ninja (if used instead of Make)
+build.ninja
+.ninja_deps
+.ninja_log
+
+# Generated configured headers (from configured/config.hpp.in)
+configured_files/
+
+# CPack package output
+_CPack_Packages/
+
+# ---- Binaries and libraries ----
+app/genpass
+*.a
+*.so
+*.dylib
+*.exe
+*.dll
+
+# ---- Object files and compiler artifacts ----
+*.o
+*.obj
+*.lo
+*.la
+*.d
+# CMake/Ninja dependency tracking (not TypeScript)
+**/CMakeFiles/**/*.ts
+
+# ---- Coverage / profiling ----
+*.gcno
+*.gcda
+*.gcov
+
+# ---- IDE / editor (we do not ignore .vscode / .clangd so they can be shared) ----
+.idea/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ---- Editor backup / temp ----
+*~
+*.bak
+*.swp
+*.swo
+
+# ---- OS ----
+.DS_Store
 ._.DS_Store
+Thumbs.db
+
+# ---- Core dumps ----
+core
+core.*
+
+# ---- Package outputs (optional: remove if you want to track built packages) ----
 *.deb
+*.rpm
+*.zip
+*.tar.gz
+*.tgz
