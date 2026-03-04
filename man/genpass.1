@@ -1,0 +1,75 @@
+.\" genpass.1 - man page for genpass
+.TH GENPASS 1 "2025\-03\-04" "genpass 0.3.0" "User Commands"
+.SH NAME
+genpass \- readable and pronounceable password generator
+.SH SYNOPSIS
+.B genpass
+[\fIoptions\fR] [\fIformat\fR]
+.SH DESCRIPTION
+.B genpass
+generates random passwords from a template. You specify the format as a
+sequence of type letters followed by length (e.g. \fBW4s2w3d5\fR).
+Output is one password per line; the last used format is remembered and can
+be recalled with \fB\-\-last\fR.
+.SH OPTIONS
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help and exit.
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+Print version and exit.
+.TP
+\fB\-n\fR \fIN\fR, \fB\-\-number\fR=\fIN\fR
+Number of passwords to generate (default: 3).
+.TP
+\fB\-l\fR, \fB\-\-last\fR
+Use the last remembered format instead of a format argument (serena memory).
+.SH FORMAT
+The format is a string of type\-length pairs with no separators. Each pair is
+one letter (type) followed by one or more digits (length).
+.TP
+\fBW\fR
+Uppercase word (consonant\-vowel style, first letter capital).
+.TP
+\fBw\fR
+Lowercase word (consonant\-vowel).
+.TP
+\fBP\fR
+Pronounceable uppercase (uses digraphs like th, sh, ch, qu; first letter capital).
+.TP
+\fBp\fR
+Pronounceable lowercase (digraphs: th, sh, ch, qu, wh, ph, ck, ng; oo, ee, ea, ai, oa).
+.TP
+\fBd\fR
+Digits (0\-9).
+.TP
+\fBs\fR
+Special symbols (!@#$%^&*~><(),\\=/;:+\-.[]_).
+.PP
+Length is the number of characters for that segment (e.g. \fBw4\fR = 4 lowercase
+word characters). Length must not exceed 255 per segment.
+.SH EXAMPLES
+.TP
+.B genpass W4s2w3d5
+Generate 3 passwords like \fBCyvi!:wof90943\fR (4 uppercase word + 2 special + 3 word + 5 digits).
+.TP
+.B genpass p8d2 \-n 5
+Generate 5 pronounceable passwords of 8 letters plus 2 digits (e.g. \fBtheeng42\fR).
+.TP
+.B genpass \-l \-n 2
+Generate 2 passwords using the last remembered format.
+.SH FILES
+.TP
+\fI~/.genpass_memory\fR
+Stores the last used format (read with \fB\-\-last\fR, updated after each run).
+.SH EXIT STATUS
+.TP
+0
+Success.
+.TP
+1
+Invalid options, missing format, or parse error.
+.SH SEE ALSO
+.BR xkcdpass (1)
+.SH AUTHORS
+Readable password generator by crow16384.

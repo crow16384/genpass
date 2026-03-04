@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.25)
 
 project(genpass
         LANGUAGES CXX
-        VERSION 0.2.4
+        VERSION 0.3.0
         DESCRIPTION "Password generator")
         
 set(PROJECT_AUTHOR crow16384)
@@ -14,8 +14,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(LIB_NAME GenPassLib)
 set(TARGET_NAME genpass)
 
-set(CMAKE_INSTALL_PREFIX "~/bin")
-#install(CODE "execute_process(\"strip ${TARGET_NAME}\")")
+# Default prefix: use -DCMAKE_INSTALL_PREFIX=$HOME/.local for user install
+# install(CODE "execute_process(\"strip ${TARGET_NAME}\")")
 
 add_subdirectory(configured)
 add_subdirectory(src)
@@ -31,3 +31,19 @@ if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
   target_link_libraries(${TARGET_NAME} PUBLIC ${LIB_NAME} ${Boost_LIBRARIES})
 endif()
+
+# Install: binary and man page
+install(TARGETS ${TARGET_NAME} RUNTIME DESTINATION bin)
+install(FILES ${CMAKE_SOURCE_DIR}/man/genpass.1 DESTINATION share/man/man1)
+
+# DEB package (make package or cpack -G DEB)
+set(CPACK_GENERATOR "DEB")
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION "Readable and pronounceable password generator (template-based, supports th/sh/ch digraphs)")
+set(CPACK_PACKAGE_VENDOR ${PROJECT_AUTHOR})
+set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${PROJECT_AUTHOR}")
+set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
+set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+include(CPack)
