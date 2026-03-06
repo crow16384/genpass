@@ -101,3 +101,8 @@ Install includes `genpass(1)` under `share/man/man1`.
 ```bash
 man genpass
 ```
+
+## License
+
+This project is licensed under the GNU General Public License v3.0.
+See the `LICENSE` file for the full text.
