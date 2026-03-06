@@ -1,27 +1,103 @@
-# Simple password generator written in C++
+# genpass
 
+Readable and pronounceable password generator written in C++.
+
+`genpass` creates passwords from a compact template format and can remember
+the last template you used.
+
+## Usage
+
+```text
+genpass [options] [format]
 ```
-genpass [options] format
 
-                  options:
-                    -n [ --number ]  number of passwords (default =3)
+### Options
 
-                    
-                  'format' is required
-                  where:
-                    W - uppercase word
-                    w - lowercase word
-                    d - digit
-                    s - special symbol
+- `-h`, `--help` Print help and exit.
+- `-v`, `--version` Print version and exit.
+- `-n`, `--number <N>` Number of passwords to generate (default: `3`).
+- `-l`, `--last` Reuse the last remembered format from `~/.genpass_memory`.
 
-                    
-                  This is a template for generation with type and number of characters
-                  
-                  For example:
+`format` is required unless you use `--last`.
 
-                    genpass W4s2w3d5
+## Format Reference
 
-                    
-                  will produce 3 (default, see --number) passwords
-                  like: 'Cyvi!:wof90943'
+The format is a sequence of `type + length` pairs with no separators:
+
+- `W` Uppercase word (consonant-vowel pattern, first letter capitalized)
+- `w` Lowercase word (consonant-vowel pattern)
+- `P` Uppercase pronounceable word (uses digraphs like `th`, `sh`, `ch`, `qu`)
+- `p` Lowercase pronounceable word
+- `d` Digits (`0-9`)
+- `s` Special symbols (`!@#$%^&*~><(),\=/;:+-.[]_`)
+
+Examples of parts:
+
+- `w4` -> 4 lowercase word characters
+- `P8` -> 8 uppercase pronounceable characters
+- `d2` -> 2 digits
+
+If no number is given after a type, length defaults to `1` (for example `W`).
+
+## Examples
+
+```bash
+# Generate 3 passwords (default count)
+genpass W4s2w3d5
+
+# Generate 5 pronounceable passwords, each p8 + d2
+genpass p8d2 -n 5
+
+# Reuse the last format
+genpass --last -n 2
+```
+
+Sample output:
+
+```text
+Rofo#her68314
+Bozo-[bid18278
+```
+
+## Build
+
+Requirements:
+
+- CMake >= 3.25
+- C++20 compiler
+- Boost `program_options`
+
+Build steps:
+
+```bash
+cmake -S . -B build
+cmake --build build
+```
+
+Binary path:
+
+```text
+build/app/genpass
+```
+
+## Install
+
+```bash
+cmake --install build
+```
+
+To install to user-local prefix:
+
+```bash
+cmake -S . -B build -DCMAKE_INSTALL_PREFIX="$HOME/.local"
+cmake --build build
+cmake --install build
+```
+
+## Man Page
+
+Install includes `genpass(1)` under `share/man/man1`.
+
+```bash
+man genpass
 ```

@@ -46,7 +46,7 @@ static void print_help() {
     std::cout << "genpass [options] [format]\n\n"
                  "options:\n"
                  "  -n [ --number ]  number of passwords (default = 3)\n"
-                 "  -l [ --last ]    use last remembered format (serena memory)\n\n"
+                 "  -l [ --last ]    use last remembered format\n\n"
                  "format (optional if --last is used):\n"
                  "  W - uppercase word   w - lowercase word\n"
                  "  P - pronounceable up  p - pronounceable (th, sh, ch, qu, etc.)\n"

@@ -1,5 +1,5 @@
 .\" genpass.1 - man page for genpass
-.TH GENPASS 1 "2025\-03\-04" "genpass 0.3.0" "User Commands"
+.TH GENPASS 1 "2026\-03\-06" "genpass 0.3.0" "User Commands"
 .SH NAME
 genpass \- readable and pronounceable password generator
 .SH SYNOPSIS
@@ -23,10 +23,11 @@ Print version and exit.
 Number of passwords to generate (default: 3).
 .TP
 \fB\-l\fR, \fB\-\-last\fR
-Use the last remembered format instead of a format argument (serena memory).
+Use the last remembered format instead of a format argument.
 .SH FORMAT
 The format is a string of type\-length pairs with no separators. Each pair is
-one letter (type) followed by one or more digits (length).
+one letter (type) followed by one or more digits (length). If the length is
+omitted, it defaults to 1 (for example, \fBW\fR).
 .TP
 \fBW\fR
 Uppercase word (consonant\-vowel style, first letter capital).
@@ -68,7 +69,7 @@ Stores the last used format (read with \fB\-\-last\fR, updated after each run).
 Success.
 .TP
 1
-Invalid options, missing format, or parse error.
+Invalid options or missing format.
 .SH SEE ALSO
 .BR xkcdpass (1)
 .SH AUTHORS
