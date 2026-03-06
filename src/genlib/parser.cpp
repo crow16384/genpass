@@ -7,8 +7,6 @@
 const std::map<char, PasswordPartType> Parser::pt{
     {'W', PasswordPartType::UWord},
     {'w', PasswordPartType::Word},
-    {'P', PasswordPartType::PronounceableU},
-    {'p', PasswordPartType::Pronounceable},
     {'d', PasswordPartType::Digits},
     {'s', PasswordPartType::Special},
 };
@@ -28,7 +26,7 @@ PasswordTemplate Parser::parse(const std::string& s) {
     try {
       part.first = pt.at(c);
       if (n > 255)
-        throw std::out_of_range("invalid n value for 'WwPpds' parameter(s)");
+        throw std::out_of_range("invalid n value for 'Wwds' parameter(s)");
       part.second = n;
     } catch (const std::out_of_range&) {
       part.first = PasswordPartType::Error;

@@ -5,7 +5,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(genpass
         LANGUAGES CXX
-        VERSION 0.3.0
+  VERSION 0.4.0
         DESCRIPTION "Password generator")
         
 set(PROJECT_AUTHOR crow16384)

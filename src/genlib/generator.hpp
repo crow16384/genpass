@@ -30,20 +30,19 @@ class PasswordGenerator {
     Rand special_r{n_special};
     Rand cons_unit_r{n_consonant_units};
     Rand vowel_unit_r{n_vowel_units};
+    Rand word_mode_r{2};
 
     std::string make_part(const PasswordPart& part);
+    std::string make_simple_word(std::size_t len);
+    std::string make_pronounceable_word_impl(std::size_t len);
     std::string make_word(std::size_t len);
     std::string make_upcased_word(std::size_t len);
-    std::string make_pronounceable_word(std::size_t len);
-    std::string make_pronounceable_upcased(std::size_t len);
     std::string make_digits(std::size_t len);
     std::string make_special(std::size_t len);
 
     static inline const std::map<PasswordPartType, std::string (PasswordGenerator::*)(std::size_t)> funs{
         {PasswordPartType::UWord, &PasswordGenerator::make_upcased_word},
         {PasswordPartType::Word, &PasswordGenerator::make_word},
-        {PasswordPartType::PronounceableU, &PasswordGenerator::make_pronounceable_upcased},
-        {PasswordPartType::Pronounceable, &PasswordGenerator::make_pronounceable_word},
         {PasswordPartType::Digits, &PasswordGenerator::make_digits},
         {PasswordPartType::Special, &PasswordGenerator::make_special},
     };

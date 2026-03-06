@@ -24,17 +24,17 @@ genpass [options] [format]
 
 The format is a sequence of `type + length` pairs with no separators:
 
-- `W` Uppercase word (consonant-vowel pattern, first letter capitalized)
-- `w` Lowercase word (consonant-vowel pattern)
-- `P` Uppercase pronounceable word (uses digraphs like `th`, `sh`, `ch`, `qu`)
-- `p` Lowercase pronounceable word
+- `W` Uppercase word (randomly plain or pronounceable, first letter capitalized)
+- `w` Lowercase word (randomly plain or pronounceable)
 - `d` Digits (`0-9`)
 - `s` Special symbols (`!@#$%^&*~><(),\=/;:+-.[]_`)
+
+Only `W`, `w`, `d`, and `s` are valid type letters.
 
 Examples of parts:
 
 - `w4` -> 4 lowercase word characters
-- `P8` -> 8 uppercase pronounceable characters
+- `W8` -> 8 uppercase readable characters
 - `d2` -> 2 digits
 
 If no number is given after a type, length defaults to `1` (for example `W`).
@@ -45,8 +45,8 @@ If no number is given after a type, length defaults to `1` (for example `W`).
 # Generate 3 passwords (default count)
 genpass W4s2w3d5
 
-# Generate 5 pronounceable passwords, each p8 + d2
-genpass p8d2 -n 5
+# Generate 5 readable passwords, each w8 + d2
+genpass w8d2 -n 5
 
 # Reuse the last format
 genpass --last -n 2

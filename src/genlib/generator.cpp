@@ -13,7 +13,7 @@ std::string PasswordGenerator::make_part(const PasswordPart& part) {
     }
 }
 
-std::string PasswordGenerator::make_word(std::size_t len) {
+std::string PasswordGenerator::make_simple_word(std::size_t len) {
     std::string res;
     res.reserve(len);
     for (std::size_t i = 0; i < len; ++i) {
@@ -22,14 +22,7 @@ std::string PasswordGenerator::make_word(std::size_t len) {
     return res;
 }
 
-std::string PasswordGenerator::make_upcased_word(std::size_t len) {
-    auto res = make_word(len);
-    if (!res.empty())
-        res[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(res[0])));
-    return res;
-}
-
-std::string PasswordGenerator::make_pronounceable_word(std::size_t len) {
+std::string PasswordGenerator::make_pronounceable_word_impl(std::size_t len) {
     std::string res;
     res.reserve(len + 2);
     bool consonant_next = true;
@@ -53,8 +46,14 @@ std::string PasswordGenerator::make_pronounceable_word(std::size_t len) {
     return res;
 }
 
-std::string PasswordGenerator::make_pronounceable_upcased(std::size_t len) {
-    auto res = make_pronounceable_word(len);
+std::string PasswordGenerator::make_word(std::size_t len) {
+    if (word_mode_r() == 0)
+        return make_simple_word(len);
+    return make_pronounceable_word_impl(len);
+}
+
+std::string PasswordGenerator::make_upcased_word(std::size_t len) {
+    auto res = make_word(len);
     if (!res.empty())
         res[0] = static_cast<char>(std::toupper(static_cast<unsigned char>(res[0])));
     return res;

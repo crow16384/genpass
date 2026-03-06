@@ -50,11 +50,11 @@ static void print_help() {
                  "  -n [ --number ]  number of passwords (default = 3)\n"
                  "  -l [ --last ]    use last remembered format\n\n"
                  "format (optional if --last is used):\n"
-                 "  W - uppercase word   w - lowercase word\n"
-                 "  P - pronounceable up  p - pronounceable (th, sh, ch, qu, etc.)\n"
+                 "  W - uppercase word (randomly plain/pronounceable)\n"
+                 "  w - lowercase word (randomly plain/pronounceable)\n"
                  "  d - digit             s - special symbol\n\n"
                  "Example: genpass W4s2w3d5  → 'Cyvi!:wof90943'\n"
-                 "         genpass p6d2      → pronounceable like 'theeng42'\n"
+                 "         genpass w6d2      → readable like 'theeng42'\n"
                  "The last used format is remembered for --last.\n";
 }
 

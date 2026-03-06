@@ -1,5 +1,5 @@
 .\" genpass.1 - man page for genpass
-.TH GENPASS 1 "2026\-03\-06" "genpass 0.3.0" "User Commands"
+.TH GENPASS 1 "2026\-03\-06" "genpass 0.4.0" "User Commands"
 .SH NAME
 genpass \- readable and pronounceable password generator
 .SH SYNOPSIS
@@ -30,16 +30,10 @@ one letter (type) followed by one or more digits (length). If the length is
 omitted, it defaults to 1 (for example, \fBW\fR).
 .TP
 \fBW\fR
-Uppercase word (consonant\-vowel style, first letter capital).
+Uppercase word (randomly plain or pronounceable, first letter capital).
 .TP
 \fBw\fR
-Lowercase word (consonant\-vowel).
-.TP
-\fBP\fR
-Pronounceable uppercase (uses digraphs like th, sh, ch, qu; first letter capital).
-.TP
-\fBp\fR
-Pronounceable lowercase (digraphs: th, sh, ch, qu, wh, ph, ck, ng; oo, ee, ea, ai, oa).
+Lowercase word (randomly plain or pronounceable).
 .TP
 \fBd\fR
 Digits (0\-9).
@@ -54,8 +48,8 @@ word characters). Length must not exceed 255 per segment.
 .B genpass W4s2w3d5
 Generate 3 passwords like \fBCyvi!:wof90943\fR (4 uppercase word + 2 special + 3 word + 5 digits).
 .TP
-.B genpass p8d2 \-n 5
-Generate 5 pronounceable passwords of 8 letters plus 2 digits (e.g. \fBtheeng42\fR).
+.B genpass w8d2 \-n 5
+Generate 5 readable passwords of 8 letters plus 2 digits (e.g. \fBtheeng42\fR).
 .TP
 .B genpass \-l \-n 2
 Generate 2 passwords using the last remembered format.
