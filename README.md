@@ -74,6 +74,15 @@ cmake -S . -B build
 cmake --build build
 ```
 
+To build a Debian package:
+
+```bash
+./scripts/build-deb.sh
+```
+
+The script configures a fresh package build directory, builds the project, and
+produces the `.deb` artifact in the build directory.
+
 Binary path:
 
 ```text

@@ -1,0 +1,17 @@
+project_name: genpass
+languages:
+  - cpp
+ignored_paths:
+  - build/
+  - build-check/
+  - CMakeFiles/
+  - _CPack_Packages/
+  - configured_files/
+  - .idea/
+read_only: false
+ignore_all_files_in_gitignore: true
+initial_prompt: |
+  This is a small C++20 CMake project that builds the `genpass` CLI and can
+  package it as a Debian package via CPack. Primary code lives in `app/` and
+  `src/genlib/`.
+encoding: utf-8

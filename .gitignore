@@ -1,5 +1,6 @@
 # ---- Build directories ----
 build/
+build-deb/
 cmake-build-*/
 x64/
 out/
@@ -30,6 +31,11 @@ build.ninja
 
 # Generated configured headers (from configured/config.hpp.in)
 configured_files/
+
+# Serena local state
+.serena/project.local.yml
+.serena/logs/
+.serena/cache/
 
 # CPack package output
 _CPack_Packages/
