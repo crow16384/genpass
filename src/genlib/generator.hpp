@@ -14,18 +14,20 @@ class PasswordGenerator {
     static constexpr const char consonants[] = "bcdfghjklmnpqrsvwxz";
     static constexpr const char special[] = "!@#$%^&*~><(),\\=/;:+-.[]_";
     static constexpr const char digits[] = "0123456789";
-    static constexpr std::size_t n_digits = 10;
-    static constexpr std::size_t n_special = 28;
+    static constexpr std::size_t n_vowels = sizeof(vowels) - 1;
+    static constexpr std::size_t n_digits = sizeof(digits) - 1;
+    static constexpr std::size_t n_special = sizeof(special) - 1;
+    static constexpr std::size_t n_consonants = sizeof(consonants) - 1;
     // English digraphs for pronounceable passwords
     static constexpr const char* consonant_digraphs[] = {"th", "sh", "ch", "qu", "wh", "ph", "ck", "ng"};
     static constexpr const char* vowel_digraphs[] = {"oo", "ee", "ea", "ai", "oa"};
     static constexpr std::size_t n_consonant_digraphs = sizeof(consonant_digraphs) / sizeof(consonant_digraphs[0]);
     static constexpr std::size_t n_vowel_digraphs = sizeof(vowel_digraphs) / sizeof(vowel_digraphs[0]);
-    static constexpr std::size_t n_consonant_units = n_consonant_digraphs + (sizeof(consonants) - 1);
-    static constexpr std::size_t n_vowel_units = n_vowel_digraphs + (sizeof(vowels) - 1);
+    static constexpr std::size_t n_consonant_units = n_consonant_digraphs + n_consonants;
+    static constexpr std::size_t n_vowel_units = n_vowel_digraphs + n_vowels;
 
-    Rand consonants_r{sizeof(consonants) - 1};
-    Rand vowels_r{sizeof(vowels) - 1};
+    Rand consonants_r{n_consonants};
+    Rand vowels_r{n_vowels};
     Rand digits_r{n_digits};
     Rand special_r{n_special};
     Rand cons_unit_r{n_consonant_units};
