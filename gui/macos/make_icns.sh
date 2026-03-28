@@ -28,9 +28,9 @@ rm -rf "$ICONSET"
 mkdir -p "$ICONSET"
 
 for sz in 16 32 128 256 512; do
-  sips -z "$sz" "$sz" "$SRC" --out "$ICONSET/icon_${sz}x${sz}.png" >/dev/null
+  sips -z "$sz" "$sz" "$SRC" -s format png --out "$ICONSET/icon_${sz}x${sz}.png" >/dev/null
   dbl=$((sz * 2))
-  sips -z "$dbl" "$dbl" "$SRC" --out "$ICONSET/icon_${sz}x${sz}@2x.png" >/dev/null
+  sips -z "$dbl" "$dbl" "$SRC" -s format png --out "$ICONSET/icon_${sz}x${sz}@2x.png" >/dev/null
 done
 
 iconutil -c icns "$ICONSET" -o "$OUT"
