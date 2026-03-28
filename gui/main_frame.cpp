@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 #include "main_frame.hpp"
+#include "app_icon_xpm.hpp"
 #include "parser.hpp"
 
 #include <wx/clipbrd.h>
+#include <wx/icon.h>
 #include <wx/sizer.h>
 
 // Preset labels and their format strings
@@ -41,6 +43,8 @@ MainFrame::MainFrame()
     : wxFrame(nullptr, wxID_ANY, "GenPass — Password Generator",
               wxDefaultPosition, wxSize(520, 620))
 {
+    SetIcon(wxIcon(genpass_icon_xpm));
+
     auto* mainPanel = new wxPanel(this);
     auto* mainSizer = new wxBoxSizer(wxVERTICAL);
 
