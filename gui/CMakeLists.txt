@@ -3,7 +3,6 @@ include(${wxWidgets_USE_FILE})
 
 set(GUI_TARGET genpass-gui)
 set(GUI_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-set(APP_ICON_SRC ${GUI_DIR}/AppIcon.ppm)
 
 add_executable(${GUI_TARGET} WIN32 MACOSX_BUNDLE
     gui_app.cpp
@@ -17,8 +16,8 @@ if(APPLE)
 
   add_custom_command(
     OUTPUT ${APP_ICON_ICNS}
-    COMMAND /bin/sh ${GUI_DIR}/macos/make_icns.sh ${APP_ICON_SRC} ${APP_ICON_ICNS}
-    DEPENDS ${APP_ICON_SRC} ${GUI_DIR}/macos/make_icns.sh
+    COMMAND /bin/sh ${GUI_DIR}/macos/make_icns.sh ${APP_ICON_ICNS}
+    DEPENDS ${GUI_DIR}/macos/make_icns.sh
     COMMENT "Generating AppIcon.icns for macOS bundle"
     VERBATIM
   )
