@@ -7,8 +7,6 @@
 #include <vector>
 
 #include "generator.hpp"
-#include "parser.hpp"
-#include "password.hpp"
 
 struct PartRow {
     wxChoice* type;

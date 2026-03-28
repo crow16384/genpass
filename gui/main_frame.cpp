@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 #include "main_frame.hpp"
+#include "parser.hpp"
 
 #include <wx/clipbrd.h>
 #include <wx/sizer.h>
