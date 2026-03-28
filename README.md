@@ -61,20 +61,49 @@ Bozo-[bid18278
 
 ## Build
 
-Requirements:
+### Requirements
 
 - CMake >= 3.25
 - C++20 compiler
 - Boost `program_options`
 
-Build steps:
+### Build CLI only (default)
+
+`BUILD_GUI` is `OFF` by default, so this builds only the CLI tool:
 
 ```bash
 cmake -S . -B build
 cmake --build build
 ```
 
-To build a Debian package:
+CLI binary path:
+
+```text
+build/app/genpass
+```
+
+### Build with GUI (`genpass-gui`)
+
+Enable GUI explicitly:
+
+```bash
+cmake -S . -B build-gui -DBUILD_GUI=ON
+cmake --build build-gui
+```
+
+GUI binary path on Linux:
+
+```text
+build-gui/gui/genpass-gui
+```
+
+GUI prerequisites by platform:
+
+- Linux (Debian/Ubuntu): `sudo apt-get install libwxgtk3.2-dev`
+- macOS (Homebrew): `brew install wxwidgets`
+- Windows: install wxWidgets 3.x and make it discoverable by CMake (for example via `wxWidgets_ROOT_DIR`)
+
+### Debian package (CLI)
 
 ```bash
 ./scripts/build-deb.sh
@@ -82,12 +111,6 @@ To build a Debian package:
 
 The script configures a fresh package build directory, builds the project, and
 produces the `.deb` artifact in the build directory.
-
-Binary path:
-
-```text
-build/app/genpass
-```
 
 ## Install
 
