@@ -3,7 +3,7 @@ include(${wxWidgets_USE_FILE})
 
 set(GUI_TARGET genpass-gui)
 set(GUI_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-set(APP_ICON_ICNS ${GUI_DIR}/AppIcon.icns)
+set(APP_ICON_SRC ${GUI_DIR}/AppIcon.ppm)
 
 add_executable(${GUI_TARGET} WIN32 MACOSX_BUNDLE
     gui_app.cpp
@@ -13,20 +13,20 @@ add_executable(${GUI_TARGET} WIN32 MACOSX_BUNDLE
 target_link_libraries(${GUI_TARGET} PRIVATE ${LIB_NAME} ${wxWidgets_LIBRARIES})
 
 if(APPLE)
-  if(NOT EXISTS ${APP_ICON_ICNS})
-    execute_process(
-      COMMAND /bin/sh ${GUI_DIR}/macos/make_icns.sh
-      WORKING_DIRECTORY ${GUI_DIR}
-      RESULT_VARIABLE ICON_GEN_RESULT
-      OUTPUT_QUIET
-      ERROR_QUIET
-    )
-  endif()
+  set(APP_ICON_ICNS ${CMAKE_CURRENT_BINARY_DIR}/AppIcon.icns)
 
-  if(EXISTS ${APP_ICON_ICNS})
-    target_sources(${GUI_TARGET} PRIVATE ${APP_ICON_ICNS})
-    set_source_files_properties(${APP_ICON_ICNS} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-  endif()
+  add_custom_command(
+    OUTPUT ${APP_ICON_ICNS}
+    COMMAND /bin/sh ${GUI_DIR}/macos/make_icns.sh ${APP_ICON_SRC} ${APP_ICON_ICNS}
+    DEPENDS ${APP_ICON_SRC} ${GUI_DIR}/macos/make_icns.sh
+    COMMENT "Generating AppIcon.icns for macOS bundle"
+    VERBATIM
+  )
+  add_custom_target(genpass_gui_icon DEPENDS ${APP_ICON_ICNS})
+  add_dependencies(${GUI_TARGET} genpass_gui_icon)
+
+  target_sources(${GUI_TARGET} PRIVATE ${APP_ICON_ICNS})
+  set_source_files_properties(${APP_ICON_ICNS} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 
   set_target_properties(${GUI_TARGET} PROPERTIES
     MACOSX_BUNDLE_BUNDLE_NAME "GenPass"

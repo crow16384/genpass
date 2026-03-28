@@ -3,14 +3,26 @@ set -eu
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 GUI_DIR="$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)"
-SRC="$GUI_DIR/AppIcon.ppm"
-OUT="$GUI_DIR/AppIcon.icns"
-ICONSET="$GUI_DIR/AppIcon.iconset"
+SRC="${1:-$GUI_DIR/AppIcon.ppm}"
+OUT="${2:-$GUI_DIR/AppIcon.icns}"
+ICONSET="$(dirname "$OUT")/AppIcon.iconset"
 
 if [ ! -f "$SRC" ]; then
   echo "missing source icon: $SRC" >&2
   exit 1
 fi
+
+if ! command -v sips >/dev/null 2>&1; then
+  echo "sips not found" >&2
+  exit 1
+fi
+
+if ! command -v iconutil >/dev/null 2>&1; then
+  echo "iconutil not found" >&2
+  exit 1
+fi
+
+mkdir -p "$(dirname "$OUT")"
 
 rm -rf "$ICONSET"
 mkdir -p "$ICONSET"
